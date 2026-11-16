@@ -80,11 +80,11 @@ KNIME will be used for initial data exploration, while Python may be used for ad
 - [x] Identify the raw worksheet.
 - [x] Inspect the initial table structure.
 - [x] Generate initial column statistics.
-- [ ] Review attributes using the Data Dictionary.
-- [ ] Investigate missing values.
-- [ ] Check potential duplicate records.
-- [ ] Identify potential analytical variables.
-- [ ] Document inspection findings.
+- [x] Review attributes using the Data Dictionary.
+- [x] Investigate missing values.
+- [x] Check potential duplicate records.
+- [x] Identify potential analytical variables.
+- [x] Document inspection findings.
 
 ### 5.2 State and Territory Dataset
 
@@ -100,14 +100,35 @@ KNIME will be used for initial data exploration, while Python may be used for ad
 - Identify opportunities for regional comparisons.
 
 **Inspection status:**
-- [ ] Load the dataset into KNIME.
-- [ ] Identify relevant worksheets.
-- [ ] Inspect table structure.
-- [ ] Generate column statistics.
-- [ ] Review attributes using the Data Dictionary.
-- [ ] Investigate missing values.
-- [ ] Check potential duplicate records.
-- [ ] Document inspection findings.
+- [x] Load the dataset into KNIME.
+- [x] Identify relevant worksheets.
+- [x] Inspect table structure.
+- [x] Generate initial column statistics.
+- [x] Review attributes using the Data Dictionary.
+- [x] Investigate missing and unpublished values.
+- [x] Check duplicate records.
+- [x] Investigate consistency between the five tables.
+- [x] Document inspection findings.
+- [x] Establish preprocessing decisions.
+- [x] Export processed tables to CSV.
+
+**Processing outputs:**
+
+The State and Territory dataset was separated into five tables:
+
+| Table | Output file |
+|---|---|
+| Annual Hospitalisations | `Table1_Annual_Hospitalisations.csv` |
+| Road User | `Table2_Road_User.csv` |
+| Sex | `Table3_Sex.csv` |
+| Age Group | `Table4_Age_Group.csv` |
+| Counterparty | `Table5_Counterparty.csv` |
+
+An additional enhanced Sex dataset was created:
+
+- `Table3_Sex_Enhanced.csv`
+
+The enhanced dataset contains two derived attributes representing residual differences between the Annual totals and combined Male and Female values.
 
 ### 5.3 First Nations Dataset
 
@@ -183,14 +204,16 @@ DataVisualisation_Project/
 
 ### Week 1 – Dataset Exploration
 
+### Week 1 – Dataset Exploration
+
 - [x] Identify the official BITRE data source.
 - [x] Identify the three primary datasets.
 - [x] Identify the accompanying Data Dictionary.
 - [x] Download all datasets.
 - [x] Create the initial project directory structure.
 - [x] Begin inspecting the National Dataset using KNIME.
-- [ ] Complete National Dataset inspection.
-- [ ] Inspect State and Territory Dataset.
+- [x] Complete National Dataset inspection.
+- [x] Inspect State and Territory Dataset.
 - [ ] Inspect First Nations Dataset.
 - [ ] Complete cross-dataset comparison.
 - [ ] Identify potential research questions.
@@ -233,3 +256,6 @@ DataVisualisation_Project/
 - Analytical findings must be supported by actual dataset evidence.
 - The datasets report absolute injury counts. Comparisons between regions should consider differences in population size.
 - Missing values must be investigated before deciding whether to remove, replace, or retain them.
+- Processed datasets should be stored separately from the original files in the Raw directory.
+- The State and Territory dataset has been investigated and exported as five individual CSV files, with an additional enhanced Sex dataset.
+- KNIME workflows should be retained alongside the processed datasets to support reproducibility.
