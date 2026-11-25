@@ -136,6 +136,122 @@
     return sel;
   };
 
+  /** Anchor the first and last tick labels inward so they never hang outside the chart box. */
+  U.clampTicks = (axisSel) => {
+    const t = axisSel.selectAll(".tick text");
+    const n = t.size();
+    t.attr("text-anchor", (d, i) => (i === 0 ? "start" : i === n - 1 ? "end" : "middle"));
+    return axisSel;
+  };
+
+  /** After a chart is drawn: wrap any axis or panel title that is wider than the chart, and
+   *  nudge it back inside, so long titles never run off the edge on a narrow screen. */
+  U.fitText = (svgNode) => {
+    if (!svgNode) return;
+    const box = svgNode.getBoundingClientRect();
+    if (!box.width) return;
+    const pad = 2;
+    svgNode.querySelectorAll("text.axis-title, text.panel-title").forEach((t) => {
+      if (t.getAttribute("transform") && /rotate/.test(t.getAttribute("transform"))) return;
+      let r = t.getBoundingClientRect();
+      if (r.left >= box.left - 0.5 && r.right <= box.right + 0.5) return;
+      const words = t.textContent.split(/\s+/);
+      const x = +t.getAttribute("x") || 0;
+      // room available, in px (viewBox width = rendered width for these charts)
+      const avail = box.width - 2 * pad;
+      const lines = [];
+      let cur = "";
+      const probe = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+      t.textContent = "";
+      t.appendChild(probe);
+      words.forEach((w) => {
+        const tryLine = cur ? cur + " " + w : w;
+        probe.textContent = tryLine;
+        if (probe.getComputedTextLength() > avail && cur) { lines.push(cur); cur = w; } else cur = tryLine;
+      });
+      lines.push(cur);
+      t.textContent = "";
+      lines.forEach((ln, i) => {
+        const ts = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+        ts.setAttribute("x", x);
+        ts.setAttribute("dy", i ? "1.2em" : 0);
+        ts.textContent = ln;
+        t.appendChild(ts);
+      });
+      // shift the whole title back inside the chart box if it still hangs over an edge
+      r = t.getBoundingClientRect();
+      let dx = 0;
+      if (r.left < box.left + pad) dx = box.left + pad - r.left;
+      else if (r.right > box.right - pad) dx = box.right - pad - r.right;
+      if (dx) t.querySelectorAll("tspan").forEach((ts) => ts.setAttribute("x", x + dx));
+      // a wrapped title adds a line: make the svg taller so the new line is not cut off
+      const over = t.getBoundingClientRect().bottom - svgNode.getBoundingClientRect().bottom;
+      if (over > 0) {
+        const vb = svgNode.viewBox.baseVal, add = Math.ceil(over) + 4;
+        svgNode.setAttribute("viewBox", `${vb.x} ${vb.y} ${vb.width} ${vb.height + add}`);
+        svgNode.setAttribute("height", +svgNode.getAttribute("height") + add);
+      }
+    });
+  };
+
+  /** Keyboard access for a drawn chart (G5, G7): Tab focuses the chart, arrow keys step
+   *  through its marks and show the same tooltip and fade as hover, Enter or Space selects
+   *  (same as a click), Escape clears. It reuses each chart's own pointer handlers, so mouse,
+   *  touch and keyboard always behave the same. Wide hover overlays (line charts) are stepped
+   *  through at their x-axis ticks. */
+  U.keynav = (svg) => {
+    if (!svg || svg.dataset.keynav) return;
+    svg.dataset.keynav = "1";
+    svg.setAttribute("tabindex", "0");
+    const hint = " Keyboard: arrow keys step through the values, Enter selects, Escape clears.";
+    svg.setAttribute("aria-label", (svg.getAttribute("aria-label") || "") + hint);
+    const hovers = (n) => (n.__on || []).some((o) => o.type === "pointermove" || o.type === "mouseover" || o.type === "mousemove");
+    const stops = () => {
+      const box = svg.getBoundingClientRect();
+      const out = [];
+      svg.querySelectorAll("*").forEach((n) => {
+        if (!hovers(n)) return;
+        const r = n.getBoundingClientRect();
+        if (!r.width && !r.height) return;
+        if (r.width > box.width * 0.4 && r.height > box.height * 0.25) {
+          // a plot-sized hover overlay (line charts): stop at each x-axis tick inside it
+          const xs = new Set();
+          svg.querySelectorAll(".tick").forEach((t) => {
+            const m = /translate\(\s*([-\d.]+)[ ,]+0\s*\)/.exec(t.getAttribute("transform") || "");
+            if (!m || t.closest("[transform*='rotate']")) return;
+            const label = t.querySelector("text");
+            if (!label || !label.textContent.trim()) return; // grid lines have no label
+            const tr = label.getBoundingClientRect(), cx = Math.round(tr.left + tr.width / 2);
+            if (cx >= r.left - 1 && cx <= r.right + 1) xs.add(cx);
+          });
+          [...xs].sort((p, q) => p - q).forEach((cx) => out.push({ n, x: cx, y: r.top + r.height / 2 }));
+        } else out.push({ n, x: r.left + r.width / 2, y: r.top + r.height / 2 });
+      });
+      // reading order, and one stop per position (a mark and its hit area share one stop)
+      out.sort((p, q) => (Math.abs(p.y - q.y) > 6 ? p.y - q.y : p.x - q.x));
+      return out.filter((p, k) => !k || Math.abs(p.x - out[k - 1].x) > 3 || Math.abs(p.y - out[k - 1].y) > 3);
+    };
+    let i = -1, cur = null;
+    const fire = (type, s) => s && s.n.dispatchEvent(new PointerEvent(type, { bubbles: true, clientX: s.x, clientY: s.y, pointerType: "mouse" }));
+    const clear = () => { fire("pointerleave", cur); fire("mouseout", cur); U.tip.hide(); cur = null; i = -1; };
+    svg.addEventListener("keydown", (ev) => {
+      const k = ev.key;
+      if (k === "Escape") { clear(); if (U.state.selected) U.state.clear(); return; }
+      if ((k === "Enter" || k === " ") && cur) { ev.preventDefault(); fire("pointerdown", cur); cur.n.dispatchEvent(new MouseEvent("click", { bubbles: true, clientX: cur.x, clientY: cur.y })); return; }
+      const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[k];
+      if (step == null && k !== "Home" && k !== "End") return;
+      ev.preventDefault();
+      const all = stops();
+      if (!all.length) return;
+      if (cur) { fire("pointerleave", cur); fire("mouseout", cur); }
+      i = k === "Home" ? 0 : k === "End" ? all.length - 1 : Math.max(0, Math.min(all.length - 1, i + step));
+      cur = all[i];
+      fire("pointermove", cur);
+      fire("mouseover", cur);
+    });
+    svg.addEventListener("blur", clear);
+  };
+
   /** Push label positions apart (1-D) so they keep at least `gap` px between them. */
   U.relax = (items, gap = 13, min = -Infinity, max = Infinity) => {
     const a = items.slice().sort((p, q) => p.y - q.y);

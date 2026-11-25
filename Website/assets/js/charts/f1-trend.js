@@ -7,7 +7,7 @@
  */
 (function () {
   const { fmt, C } = U;
-  const FN_C = "#7B3294", NI_C = "#6B7280";
+  const FN_C = U.C.navy, NI_C = "#6B7280"; // focus series in the chart colour, not the section purple
   const date = (y) => new Date(y, 6, 1);
 
   function render(el, D, opts) {

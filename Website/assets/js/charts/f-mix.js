@@ -1,36 +1,26 @@
-/* F2-F4 - First Nations vs non-Indigenous: how the mix of hospitalisations differs
- * Question: How did First Nations and non-Indigenous patterns differ by age, usual residence,
- *           road user and counterparty, and did the mix shift between 2011 and 2021?
- * Data:     STORY_DATA.firstNations.{ageMix, remotenessMix, roadUserMix, counterpartyMix}
+/* F2-F3 - First Nations vs non-Indigenous: how the mix of hospitalisations differs
+ * Question: How did First Nations and non-Indigenous patterns differ by age, usual residence, and did the mix shift between 2011 and 2021?
+ * Data:     STORY_DATA.firstNations.{ageMix, remotenessMix}
  *           rows {population, year, category, hospitalisations, share}
  * Chart:    100% stacked bars, one per population x year (2011 and 2021: the years with no
- *           n.p. cells in the age table). One renderer, three chart ids:
- *             f2 age · f3 usual residence (known residence only) · f4 road user | counterparty (toggle)
+ *           n.p. cells in the age table). One renderer, two chart ids:
+ *             f2 age · f3 usual residence (known residence only). F4 is a slopegraph: f4-slope.js
  */
 (function () {
-  const { fmt, ROAD_USER_COLORS: RC } = U;
+  const { fmt } = U;
   const FN = "First Nations people", NI = "Non-Indigenous";
   const POP_LABEL = { [FN]: "First Nations people", [NI]: "Non-Indigenous people" };
 
   const SCHEMES = {
     age: {
       key: "ageMix", order: "ageOrder", title: "Share of hospitalisations by age group at admission (%)",
-      colors: { "0-7": "#EDE4F5", "8-16": "#CDB8E3", "17-25": "#A483CC", "26-39": "#7B57B0", "40-64": "#55388A", "65+": "#331F5C" },
+      colors: { "0-7": "#E3EAF3", "8-16": "#C0D0E4", "17-25": "#8FAACD", "26-39": "#5F83B3", "40-64": "#365C8D", "65+": "#1F3A5F" }, // one hue, light to dark (no section purple inside charts)
       label: (c) => c,
     },
     remoteness: {
       key: "remotenessMix", order: "remotenessOrder", title: "Share of hospitalisations by remoteness of usual residence (known residence, %)",
       colors: { "Major Cities": "#C9D7E8", Regional: "#6F95C2", Remote: "#1F3A5F" },
       label: (c) => (c === "Major Cities" ? "Major cities" : c),
-    },
-    roadUser: {
-      key: "roadUserMix", order: "roadUserOrder", title: "Share of hospitalisations by road user (%)",
-      colors: RC, label: (c) => (c === "Other" ? "Other (incl. not published)" : c),
-    },
-    counterparty: {
-      key: "counterpartyMix", order: "counterpartyOrder", title: "Share of hospitalisations by what the crash involved (%)",
-      colors: { "Car, pick-up truck or van": "#0072B2", "Non-collision transport accident": "#CC79A7", "Fixed or stationary object": "#8C6D31", Other: "#B0B0B0" },
-      label: (c) => ({ "Car, pick-up truck or van": "Car, pick-up or van", "Non-collision transport accident": "Non-collision", "Fixed or stationary object": "Fixed object" }[c] || c),
     },
   };
 
@@ -73,7 +63,7 @@
     [FN, NI].forEach((p) => {
       yPos += groupGap;
       g.append("text").attr("class", "panel-title").attr("x", 0).attr("y", yPos - 10)
-        .attr("fill", p === FN ? "#7B3294" : U.C.ink).text(POP_LABEL[p]);
+        .attr("fill", U.C.ink).text(POP_LABEL[p]);
       rows.filter((r) => r.pop === p).forEach((r) => { placed.push({ r, y: yPos }); yPos += barH + gap; });
     });
 
@@ -94,12 +84,11 @@
         U.tip.row(`${POP_LABEL[d.pop]}, ${d.year}`, `${fmt.int(d.n)} (${fmt.pct(d.share)})`) +
         U.tip.row(`Same group, ${other.year}`, fmt.pct(other.share)) +
         U.tip.row(`${POP_LABEL[peer.pop]}, ${d.year}`, fmt.pct(peer.share)) +
-        (scheme === "remoteness" ? `<div class="tt-note">Share of cases with a known usual residence.</div>` : "") +
-        (scheme === "roadUser" && d.cat === "Other" ? `<div class="tt-note">Total minus the four main groups: bus, heavy vehicle, van and other or unknown road users, including cells not published.</div>` : ""));
+        (scheme === "remoteness" ? `<div class="tt-note">Share of cases with a known usual residence.</div>` : ""));
     }).on("pointerleave", (ev) => { seg.classed("dim", false); U.tip.hide(ev); });
 
     U.styleAxis(g.append("g").attr("transform", `translate(0,${yPos + 2})`)
-      .call(d3.axisBottom(x).ticks(narrow ? 4 : 5).tickFormat((v) => v + "%")));
+      .call(d3.axisBottom(x).ticks(narrow ? 4 : 5).tickFormat((v) => v + "%"))).call(U.clampTicks);
     U.axisTitle(g, lab + bw / 2, yPos + 40, S.title);
   }
 
@@ -118,9 +107,4 @@
 
   Charts.f2 = { render: (el, D, o) => render(el, D, o, "age"), table: (D, o) => table(D, o, "age") };
   Charts.f3 = { render: (el, D, o) => render(el, D, o, "remoteness"), table: (D, o) => table(D, o, "remoteness") };
-  Charts.f4 = {
-    render: (el, D, o) => render(el, D, o, o.mode),
-    table: (D, o) => table(D, o, o.mode),
-    defaults: { mode: "roadUser" },
-  };
 })();

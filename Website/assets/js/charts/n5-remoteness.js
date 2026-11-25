@@ -27,7 +27,7 @@
     U.legend(el, order.map((u) => ({ label: u, color: RC[u] })));
 
     const labelH = 18, barH = narrow ? 26 : 30, rowH = labelH + barH + 18;
-    const statW = narrow ? 92 : 220, bdX = 128;
+    const statW = narrow ? 92 : 240, bdX = 128;
     const m = { top: 34, right: 8, bottom: 8, left: 0 };
     const iw = W - m.left - m.right, bw = iw - statW - 16;
     const axisY = (rows.length - 1) * rowH + 8 + labelH + barH + 6;
@@ -41,7 +41,7 @@
     const x = d3.scaleLinear().domain([0, 100]).range([0, bw]);
 
     U.axisTitle(g, 0, -16, "Usual residence of patient", { anchor: "start" });
-    U.styleAxis(g.append("g").attr("transform", `translate(0,${axisY})`).call(d3.axisBottom(x).ticks(narrow ? 4 : 5).tickFormat((v) => v + "%")));
+    U.styleAxis(g.append("g").attr("transform", `translate(0,${axisY})`).call(d3.axisBottom(x).ticks(narrow ? 4 : 5).tickFormat((v) => v + "%"))).call(U.clampTicks);
     U.axisTitle(g, bw / 2, axisY + 36, narrow ? "Road-user mix, 2011–2021 (%)" : "Road-user mix of hospitalisations, 2011–2021 (%)");
     const sx = bw + 16;
     g.append("text").attr("class", "panel-title sev").attr("x", sx).attr("y", -16).text(narrow ? "Deaths/1,000" : "Deaths per 1,000");

@@ -26,7 +26,7 @@
     ]);
 
     const rowH = 46;
-    const m = { top: 26, right: narrow ? 16 : 40, bottom: 50, left: narrow ? 8 : 12 };
+    const m = { top: 26, right: narrow ? 16 : 40, bottom: 50, left: 12 };
     const H = m.top + rowH * data.length + m.bottom, iw = W - m.left - m.right;
     const ped = D.national.roadUserSeverity.find((d) => d.category === "Pedestrian");
     const svg = U.svg(el, W, H,

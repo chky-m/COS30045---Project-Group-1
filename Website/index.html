@@ -108,7 +108,7 @@
         <button type="button" data-opt="mode" data-value="annual">Annual</button>
       </div>
     </div>
-    <div class="wrap-wide"><div class="chart" id="chart-n1" data-chart="n1"></div></div>
+    <div class="wrap-wide"><div class="chart" id="chart-n1" data-chart="n1"></div><p class="chart-source">Source: BITRE national hospitalised injuries file (Cause of injury = Traffic), AIHW National Hospital Morbidity Database, September 2023 release.</p></div>
     <div class="wrap">
       <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-n1"></div></details>
       <div class="why">
@@ -131,7 +131,7 @@
         <button type="button" data-opt="mode" data-value="index">Indexed (2011 = 100)</button>
         <button type="button" data-opt="mode" data-value="count">Counts</button>
       </div>
-      <div class="chart" id="chart-n2" data-chart="n2"></div>
+      <div class="chart" id="chart-n2" data-chart="n2"></div><p class="chart-source">Source: BITRE national hospitalised injuries file (Cause of injury = Traffic), AIHW National Hospital Morbidity Database, September 2023 release.</p>
       <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-n2"></div></details>
       <div class="why">
         <h4>Why it matters</h4>
@@ -152,7 +152,7 @@
         <button type="button" data-opt="mode" data-value="roadUser">Road user</button>
         <button type="button" data-opt="mode" data-value="counterparty">What the crash involved</button>
       </div>
-      <div class="chart" id="chart-n3" data-chart="n3"></div>
+      <div class="chart" id="chart-n3" data-chart="n3"></div><p class="chart-source">Source: BITRE national hospitalised injuries file (Cause of injury = Traffic), AIHW National Hospital Morbidity Database, September 2023 release.</p>
       <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-n3"></div></details>
       <div class="why">
         <h4>Why it matters</h4>
@@ -168,7 +168,7 @@
       <h3 class="chart-headline">Two in three hospitalisations are male; people aged 75+ are 6% of cases but 29% of deaths in hospital</h3>
       <p class="chart-desc">Hospitalisations by age group, males to the left and females to the right (2011–2021). The dot strip on the right shows deaths in hospital per 1,000 cases for each age group (2011–2019).</p>
       <div class="callout-stat sev"><span class="who">Age 75+</span> <span class="big cases"><span data-stat="a75Cases"></span></span> of cases <span class="dot" aria-hidden="true">·</span> <span class="big deaths"><span data-stat="a75Deaths"></span></span> of deaths in hospital</div>
-      <div class="chart" id="chart-n4" data-chart="n4"></div>
+      <div class="chart" id="chart-n4" data-chart="n4"></div><p class="chart-source">Source: BITRE national hospitalised injuries file (Cause of injury = Traffic), AIHW National Hospital Morbidity Database, September 2023 release.</p>
       <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-n4"></div></details>
       <div class="why">
         <h4>Why it matters</h4>
@@ -181,9 +181,9 @@
   <article class="chart-block" id="n5">
     <div class="wrap">
       <p class="kicker">N5 · National · Remoteness</p>
-      <h3 class="chart-headline">The injury mix differs by where patients live</h3>
+      <h3 class="chart-headline">Cyclists are <span data-stat="cycCity"></span> of major-city patients but only <span data-stat="cycRemote"></span> of remote patients</h3>
       <p class="chart-desc">Road-user mix of hospitalisations by the remoteness of the patient's <strong>usual residence</strong> (not where the crash happened), 2011–2021. Beside each bar: deaths in hospital per 1,000 cases and bed days per case.</p>
-      <div class="chart" id="chart-n5" data-chart="n5"></div>
+      <div class="chart" id="chart-n5" data-chart="n5"></div><p class="chart-source">Source: BITRE national hospitalised injuries file (Cause of injury = Traffic), AIHW National Hospital Morbidity Database, September 2023 release.</p>
       <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-n5"></div></details>
       <div class="why">
         <h4>Why it matters</h4>
@@ -223,7 +223,7 @@
   <article class="chart-block wide" id="s1">
     <div class="wrap">
       <p class="kicker">S1 · State · Growth</p>
-      <h3 class="chart-headline">Queensland grew fastest since 2018, and grew in every comparable window</h3>
+      <h3 class="chart-headline">Queensland grew fastest since 2018 (<span data-stat="qld1821"></span>), and grew in every comparable window</h3>
       <p class="chart-desc">Percentage change in annual hospitalisations by state of usual residence. Tiles sit in roughly geographic positions. Choose a comparison window; 2018–2021 is the default because no state changed its counting rules during this window. Hover a tile or bar for counts; click to highlight a state.</p>
       <div class="controls" data-chart="s1" role="group" aria-label="Comparison window">
         <button type="button" data-opt="window" data-value="2018-2021">2018–2021</button>
@@ -231,7 +231,7 @@
         <button type="button" data-opt="window" data-value="2011-2021">2011–2021</button>
       </div>
     </div>
-    <div class="wrap-wide"><div class="chart" id="chart-s1" data-chart="s1"></div></div>
+    <div class="wrap-wide"><div class="chart" id="chart-s1" data-chart="s1"></div><p class="chart-source">Source: BITRE State &amp; Territory hospitalised injuries workbook (Tables 1–5, six-monthly), September 2023 release.</p></div>
     <div class="wrap">
       <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-s1"></div></details>
       <div class="why">
@@ -245,14 +245,14 @@
   <article class="chart-block wide" id="s2">
     <div class="wrap">
       <p class="kicker">S2 · State · Half-yearly</p>
-      <h3 class="chart-headline">Half-yearly data reveals the reporting breaks</h3>
+      <h3 class="chart-headline">Victoria fell <span data-stat="vicDrop12"></span> in one half-year when it changed its counting rules in 2012</h3>
       <p class="chart-desc">Hospitalisations per half-year for each state of usual residence, 2011–2021. Hatched areas are affected by a reporting change. Hover a panel to line up the same half-year across all eight.</p>
       <div class="controls" data-chart="s2" role="group" aria-label="Y-scale">
         <button type="button" data-opt="scale" data-value="own">Own scale</button>
         <button type="button" data-opt="scale" data-value="shared">Shared scale</button>
       </div>
     </div>
-    <div class="wrap-wide"><div class="chart" id="chart-s2" data-chart="s2"></div></div>
+    <div class="wrap-wide"><div class="chart" id="chart-s2" data-chart="s2"></div><p class="chart-source">Source: BITRE State &amp; Territory hospitalised injuries workbook (Tables 1–5, six-monthly), September 2023 release.</p></div>
     <div class="wrap">
       <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-s2"></div></details>
       <div class="why">
@@ -266,9 +266,9 @@
   <article class="chart-block" id="s3">
     <div class="wrap">
       <p class="kicker">S3 · State · Cyclists</p>
-      <h3 class="chart-headline">Cyclist hospitalisations rose in every state and territory</h3>
-      <p class="chart-desc">Change in pedal-cyclist hospitalisations from 2011 to 2021 by state of usual residence, from <span data-stat="actCyc"></span> in the ACT to <span data-stat="waCyc"></span> in WA. Hover a bar for counts; the state chosen above is highlighted.</p>
-      <div class="chart" id="chart-s3" data-chart="s3"></div>
+      <h3 class="chart-headline">Cyclist hospitalisations rose in every state and territory, from <span data-stat="waCyc"></span> in WA to <span data-stat="actCyc"></span> in the ACT</h3>
+      <p class="chart-desc">Change in pedal-cyclist hospitalisations from 2011 to 2021 by state of usual residence. Hover a bar for counts; the state chosen above is highlighted.</p>
+      <div class="chart" id="chart-s3" data-chart="s3"></div><p class="chart-source">Source: BITRE State &amp; Territory hospitalised injuries workbook (Tables 1–5, six-monthly), September 2023 release.</p>
       <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-s3"></div></details>
       <div class="why">
         <h4>Why it matters</h4>
@@ -281,7 +281,7 @@
   <article class="chart-block wide" id="s4">
     <div class="wrap">
       <p class="kicker">S4 · State · Injury profile</p>
-      <h3 class="chart-headline">Every jurisdiction has its own injury profile</h3>
+      <h3 class="chart-headline">Every jurisdiction has its own injury profile: cyclists are <span data-stat="actCycShare"></span> of ACT cases, against <span data-stat="cycShareMin"></span>–<span data-stat="cycShareMax"></span> elsewhere</h3>
       <p class="chart-desc">Each cell is a category's share of the state's total hospitalisations, 2011–2021 pooled. Cases withheld for small numbers (n.p.) stay visible in their own column instead of being counted as zero.</p>
       <div class="controls" data-chart="s4" role="group" aria-label="Category scheme">
         <button type="button" data-opt="mode" data-value="roadUser">Road user</button>
@@ -289,7 +289,7 @@
         <button type="button" data-opt="mode" data-value="age">Age</button>
       </div>
     </div>
-    <div class="wrap-wide"><div class="chart" id="chart-s4" data-chart="s4"></div></div>
+    <div class="wrap-wide"><div class="chart" id="chart-s4" data-chart="s4"></div><p class="chart-source">Source: BITRE State &amp; Territory hospitalised injuries workbook (Tables 1–5, six-monthly), September 2023 release.</p></div>
     <div class="wrap">
       <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-s4"></div></details>
       <div class="why">
@@ -305,7 +305,7 @@
       <p class="kicker">S5 · State · Hospital resources</p>
       <h3 class="chart-headline">Patients from the ACT and Queensland use about 4 bed days per hospitalisation; most other states are closer to 6</h3>
       <p class="chart-desc">Bed days per hospitalisation by state of usual residence, July 2015 – December 2021, the period after the bed-day rule change. The dashed line is the national figure for July 2015 – June 2020 (deaths removed; national death fields end in June 2020); hollow rings show each state over that same window. Hover a row for counts; the state chosen above is highlighted.</p>
-      <div class="chart" id="chart-s5" data-chart="s5"></div>
+      <div class="chart" id="chart-s5" data-chart="s5"></div><p class="chart-source">Source: BITRE State &amp; Territory hospitalised injuries workbook (Tables 1–5, six-monthly), September 2023 release.</p>
       <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-s5"></div></details>
       <div class="why">
         <h4>Why it matters</h4>
@@ -339,7 +339,7 @@
         <button type="button" data-opt="mode" data-value="share">First Nations share</button>
       </div>
     </div>
-    <div class="wrap-wide"><div class="chart" id="chart-f1" data-chart="f1"></div></div>
+    <div class="wrap-wide"><div class="chart" id="chart-f1" data-chart="f1"></div><p class="chart-source">Source: BITRE First Nations hospitalised injuries workbook, September 2023 release.</p></div>
     <div class="wrap">
       <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-f1"></div></details>
       <div class="why">
@@ -356,7 +356,7 @@
       <p class="kicker">F2 · First Nations · Age</p>
       <h3 class="chart-headline">Almost half of First Nations hospitalisations are people under 26 (<span data-stat="fnU26"></span>, against <span data-stat="niU26"></span> for non-Indigenous people)</h3>
       <p class="chart-desc">Share of each group's hospitalisations by age group at admission, in 2011 and 2021. Hover a segment to compare it with the other year and the other group.</p>
-      <div class="chart" id="chart-f2" data-chart="f2"></div>
+      <div class="chart" id="chart-f2" data-chart="f2"></div><p class="chart-source">Source: BITRE First Nations hospitalised injuries workbook, September 2023 release.</p>
       <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-f2"></div></details>
       <div class="why">
         <h4>Why it matters</h4>
@@ -372,7 +372,7 @@
       <p class="kicker">F3 · First Nations · Usual residence</p>
       <h3 class="chart-headline"><span data-stat="fnRemote"></span> of First Nations patients with a known residence live in remote areas, against <span data-stat="niRemote"></span> of non-Indigenous patients</h3>
       <p class="chart-desc">Share of each group's hospitalisations by remoteness of the patient's <strong>usual residence</strong> (not where the crash happened), 2011 and 2021, for cases with a known residence.</p>
-      <div class="chart" id="chart-f3" data-chart="f3"></div>
+      <div class="chart" id="chart-f3" data-chart="f3"></div><p class="chart-source">Source: BITRE First Nations hospitalised injuries workbook, September 2023 release.</p>
       <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-f3"></div></details>
       <div class="why">
         <h4>Why it matters</h4>
@@ -387,12 +387,12 @@
     <div class="wrap">
       <p class="kicker">F4 · First Nations · Road user and crash type</p>
       <h3 class="chart-headline">Motorcyclists rose from <span data-stat="fnMotoShare2011"></span> to <span data-stat="fnMotoShare2021"></span> of First Nations hospitalisations; the non-Indigenous share stayed at <span data-stat="niMotoShare2021"></span></h3>
-      <p class="chart-desc">Share of each group's hospitalisations by road user, or by what the crash involved (counterparty), in 2011 and 2021. Hover a segment to compare.</p>
+      <p class="chart-desc">How each group's share of hospitalisations by road user, or by what the crash involved, moved between 2011 and 2021. A steeper line is a bigger shift; both panels share one scale. Hover a line to compare.</p>
       <div class="controls" data-chart="f4" role="group" aria-label="Category">
         <button type="button" data-opt="mode" data-value="roadUser">Road user</button>
         <button type="button" data-opt="mode" data-value="counterparty">What the crash involved</button>
       </div>
-      <div class="chart" id="chart-f4" data-chart="f4"></div>
+      <div class="chart" id="chart-f4" data-chart="f4"></div><p class="chart-source">Source: BITRE First Nations hospitalised injuries workbook, September 2023 release.</p>
       <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-f4"></div></details>
       <div class="why">
         <h4>Why it matters</h4>
@@ -476,6 +476,7 @@
   </div>
 </section>
 </main>
+<a class="to-top" href="#top" aria-label="Back to top" hidden><span aria-hidden="true">↑</span><span class="to-top-label" aria-hidden="true">Back to top</span></a>
 
 <footer class="site-footer">
   <div class="wrap">
@@ -499,6 +500,7 @@
 <script src="assets/js/charts/s5-beddays.js"></script>
 <script src="assets/js/charts/f1-trend.js"></script>
 <script src="assets/js/charts/f-mix.js"></script>
+<script src="assets/js/charts/f4-slope.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>
