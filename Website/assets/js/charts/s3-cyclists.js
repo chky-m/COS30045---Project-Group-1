@@ -12,7 +12,7 @@
     const W = opts.width, narrow = U.isNarrow(W);
     const data = D.state.cyclists.slice().sort((a, b) => b.pctChange - a.pctChange);
     const rowH = 34, lab = 54, countW = narrow ? 0 : 120;
-    const m = { top: 30, right: narrow ? 46 : 54, bottom: 50 };
+    const m = { top: 30, right: narrow ? 52 : 58, bottom: 50 };
     const H = m.top + rowH * data.length + m.bottom;
     const svg = U.svg(el, W, H,
       `Ranked bar chart of the change in pedal-cyclist hospitalisations from 2011 to 2021 by state of usual residence. ` +

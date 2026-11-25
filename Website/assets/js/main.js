@@ -102,6 +102,10 @@
     vic1121: () => fmt.signed(stw("Vic", "2011-2021")),
     nt2018: () => fmt.int(stYr("NT", 2018)),
     vic2018: () => fmt.int(stYr("Vic", 2018)),
+    vicDrop12: () => {
+      const h = (half) => D.state.halfYearly.find((d) => d.state === "Vic" && d.year === 2012 && d.half === half).hospitalisations;
+      return fmt.pct(Math.abs(h("Jul-Dec") / h("Jan-Jun") - 1) * 100);
+    },
     vic1321: () => fmt.signed((stYr("Vic", 2021) / stYr("Vic", 2013) - 1) * 100),
     actCyc: () => fmt.signed(cyc("ACT").pctChange),
     waCyc: () => fmt.signed(cyc("WA").pctChange),
@@ -191,9 +195,13 @@
     // remember which one had keyboard focus and give it back afterwards.
     const f = document.activeElement;
     const refocus = f && f !== e.el && e.el.contains(f) && f.tagName === "BUTTON" ? f.textContent : null;
+    const svgFocus = f && e.el.contains(f) && f.tagName.toLowerCase() === "svg";
     e.el.innerHTML = "";
     try {
       Charts[id].render(e.el, D, Object.assign(e.opts, { width: w, selectedState: U.state.selected, rerender: () => { draw(id); fillTable(id); syncControls(id); } }));
+      e.el.querySelectorAll("svg").forEach(U.fitText);
+      e.el.querySelectorAll("svg[role='img']").forEach(U.keynav);
+      if (svgFocus) { const s = e.el.querySelector("svg[tabindex]"); if (s) s.focus(); }
     } catch (err) {
       console.error(`Chart ${id} failed`, err);
       e.el.innerHTML = `<p class="chart-error">This chart could not be drawn (${err.message}).</p>`;
@@ -306,6 +314,10 @@
       const h = document.documentElement;
       bar.style.transform = `scaleX(${Math.min(1, h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight))})`;
     };
+    const toTop = document.querySelector(".to-top");
+    const onScrollTop = () => { if (toTop) toTop.hidden = window.scrollY < window.innerHeight; };
+    window.addEventListener("scroll", onScrollTop, { passive: true });
+    onScrollTop();
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
   }

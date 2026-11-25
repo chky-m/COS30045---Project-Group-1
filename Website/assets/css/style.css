@@ -16,8 +16,10 @@
   --caveat-rule: #8A7F5C;
   --serif: "Source Serif 4", "Source Serif Pro", Georgia, "Times New Roman", serif;
   --sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --prose: 720px;
-  --wide: 1040px;
+  --prose: 720px;          /* .transition only */
+  --col: 800px;            /* one page column: text, cards and charts all share it (760px inside) */
+  --measure: 100%;         /* text fills the column, so every block ends on the same right edge */
+  --wide: 960px;           /* nav bar only: room for the brand and all links */
   --nav-h: 52px;
   color-scheme: light;
 }
@@ -44,8 +46,11 @@ code { font-size: 0.86em; background: #EFEDE6; padding: 0.1em 0.35em; border-rad
 :focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; box-shadow: 0 0 0 5px #fff; }
 .controls button[aria-pressed="true"]:focus-visible, .chip[aria-pressed="true"]:focus-visible { outline-color: #E69F00; }
 
-.wrap { max-width: var(--prose); margin: 0 auto; padding: 0 20px; }
-.wrap-wide { max-width: var(--wide); margin: 0 auto; padding: 0 20px; }
+.wrap, .wrap-wide { max-width: var(--col); margin: 0 auto; padding: 0 20px; }
+/* One shared column: text, charts, cards and grids all use its full width, so every block
+ * shares both edges. The column is narrow enough (760px) to keep lines near 80 characters. */
+.lede, .prose, .fineprint, .part-head, .tasks, .kicker, .chart-headline, .chart-desc, .chart-note,
+.why, .caveat, .methods p, .methods li, .pending, .cant-tell { max-width: var(--measure); }
 
 /* ------------------------------------------------------------ nav */
 .site-header { position: sticky; top: 0; z-index: 50; background: rgba(251, 250, 247, 0.94); backdrop-filter: saturate(1.4) blur(8px); border-bottom: 1px solid var(--rule); padding-top: env(safe-area-inset-top, 0px); }
@@ -63,7 +68,7 @@ code { font-size: 0.86em; background: #EFEDE6; padding: 0.1em 0.35em; border-rad
 /* ------------------------------------------------------------ hero */
 .hero { padding: 88px 0 72px; border-bottom: 1px solid var(--rule); background: linear-gradient(180deg, #F4F2EC 0%, var(--bg) 100%); }
 .eyebrow { font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 12px; }
-h1 { font: 700 clamp(44px, 8vw, 76px)/1.02 var(--serif); letter-spacing: -0.02em; margin: 0 0 24px; }
+h1 { font: 700 clamp(40px, 7vw, 64px)/1.04 var(--serif); letter-spacing: -0.02em; margin: 0 0 24px; }
 .lede { font: 400 clamp(19px, 2.4vw, 22px)/1.55 var(--serif); color: var(--ink); margin: 0 0 40px; }
 .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 0 0 28px; }
 .stat { background: var(--surface); border: 1px solid var(--rule); border-top: 4px solid var(--navy); border-radius: 10px; padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 6px; }
@@ -280,3 +285,29 @@ h1 { font: 700 clamp(44px, 8vw, 76px)/1.02 var(--serif); letter-spacing: -0.02em
 .fn .tk-num { color: #7B3294; }
 @media (max-width: 860px) { .ap-grid, .ds-cards { grid-template-columns: 1fr; } }
 @media (max-width: 600px) { .site-nav .nav-ds { display: none; } }
+
+/* ==================================================================== design-rules checklist */
+/* every chart names its source directly under it */
+.chart-source { font-size: 12.5px; line-height: 1.45; color: var(--ink-3); margin: 2px 0 6px; max-width: var(--measure); }
+/* charts take keyboard focus (U.keynav): show it clearly */
+.chart svg[tabindex]:focus-visible { outline: 3px solid var(--navy); outline-offset: 4px; border-radius: 4px; box-shadow: none; }
+/* G3 back to top */
+.to-top { position: fixed; right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 60;
+  display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 16px; border-radius: 999px;
+  background: var(--navy); color: #fff; font: 600 14px/1 var(--sans); text-decoration: none; box-shadow: 0 4px 14px rgba(20, 30, 50, 0.18); }
+.to-top:hover { background: #16304F; }
+@media (max-width: 600px) { .to-top { width: 44px; padding: 0; justify-content: center; font-size: 18px; } .to-top-label { display: none; } }
+/* touch: every control is at least 44px tall */
+@media (pointer: coarse) {
+  .controls button, .chip, .sort-bar .chip, .legend-btn, .table-toggle summary, .site-nav li a, .scroll-cue { min-height: 44px; }
+  .site-nav li a, .table-toggle summary { display: inline-flex; align-items: center; }
+  .legend-btn, .chip { display: inline-flex; align-items: center; }
+}
+
+/* Desktop: slightly larger reading text so the full-width column stays comfortable */
+@media (min-width: 1024px) {
+  body { font-size: 17.5px; }
+  .prose { font-size: 19px; }
+  .why p { font-size: 17px; }
+  .chart-desc { font-size: 15.5px; }
+}
