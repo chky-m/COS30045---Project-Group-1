@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Who Ends Up in Hospital? Road-crash injuries in Australia, 2011–2021</title>
+  <meta name="description" content="Interactive data story on hospitalised road-crash injuries in Australia, 2011–2021, across the BITRE National, State & Territory and First Nations datasets.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#national">Skip to the charts</a>
+
+<header class="site-header">
+  <nav class="site-nav" aria-label="Sections">
+    <a class="brand" href="#overview">Who Ends Up in Hospital?</a>
+    <ul>
+      <li><a href="#overview" class="btn-overview">Overview</a></li>
+      <li class="nav-ds" aria-hidden="true">Datasets</li>
+      <li><a href="#national">National</a></li>
+      <li><a href="#state">State &amp; Territory</a></li>
+      <li><a href="#first-nations">First Nations</a></li>
+      <li><a href="#takeaways">Takeaways</a></li>
+    </ul>
+  </nav>
+  <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+</header>
+
+<main id="top">
+
+<!-- ================================================================ OVERVIEW -->
+<div id="overview">
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Hospitalised injuries from road crashes in Australia, 2011–2021</p>
+    <h1>Who ends up in hospital?</h1>
+    <p class="lede">Road-crash hospitalisations rose by about one-sixth between 2011 and 2021, then levelled off after 2017. The burden is uneven: <em>who</em> gets hurt, <em>how badly</em>, and <em>where they live</em> each tell a different story. National totals hide state stories, some of which are partly reporting changes, and First Nations hospitalisations grew far faster than the rest.</p>
+    <div class="stat-row">
+      <div class="stat">
+        <span class="stat-big" data-stat="g1121"></span>
+        <span class="stat-label">national hospitalisations, 2011 to 2021, but flat since 2018 (<span data-stat="g1821"></span>)</span>
+      </div>
+      <div class="stat stat-sev">
+        <span class="stat-big">1 in 4</span>
+        <span class="stat-label">deaths in hospital were pedestrians (<span data-stat="pedDeaths"></span>, 2011–2019), yet pedestrians were 1 in 14 cases</span>
+      </div>
+      <div class="stat stat-fn">
+        <span class="stat-big" data-stat="fnChg"></span>
+        <span class="stat-label">First Nations hospitalisations, 2011 to 2021, against <span data-stat="niChg"></span> for non-Indigenous people</span>
+      </div>
+    </div>
+    <p class="fineprint">Counts are hospital episodes of care, not people, and exclude deaths in hospital within 30 days of admission. Source: BITRE, from the AIHW National Hospital Morbidity Database (September 2023 release).</p>
+    <a class="scroll-cue" href="#national">Start with the national picture <span aria-hidden="true">↓</span></a>
+  </div>
+</section>
+
+<section class="part">
+  <div class="wrap">
+    <header class="part-head">
+      <p class="part-num">Overview</p>
+      <h2>Why this matters</h2>
+    </header>
+    <p class="prose">Hospitalised injuries from road crashes are a major, ongoing public-health and economic burden. Between 2011 and 2021, Australian hospitals recorded <strong><span data-stat="natTotal"></span></strong> road-crash hospitalisations, with large differences by state and territory, road user, age, sex and First Nations status. That information usually sits inside large, multi-sheet spreadsheets; this story makes the patterns visible and comparable.</p>
+
+    <h3 class="sub-head">Audience</h3>
+    <div class="ap-grid">
+      <div class="ap-card"><h4>Policymakers &amp; agencies</h4><p>BITRE and state and territory transport and health agencies.</p></div>
+      <div class="ap-card"><h4>Road-safety researchers</h4><p>Researchers who need comparable, documented views of the BITRE data.</p></div>
+      <div class="ap-card"><h4>General public</h4><p>Anyone interested in road-trauma trends in Australia.</p></div>
+    </div>
+
+    <h3 class="sub-head">Purpose</h3>
+    <ul class="tasks">
+      <li><strong>Prioritise:</strong> show where the hospitalised-injury burden is concentrated (by road user, age group, region and population) to help target interventions.</li>
+      <li><strong>Inform:</strong> raise public awareness of road-trauma trends and of the groups most affected.</li>
+      <li><strong>Be transparent:</strong> keep the data's limits in view (reporting changes, unpublished values and the missing post-June-2020 death data) so the figures are read responsibly.</li>
+    </ul>
+
+    <h3 class="sub-head">Three datasets, three stories</h3>
+    <div class="ds-cards">
+      <a class="ds-card" href="#national"><span class="ds-tag">National</span><p class="finding">How big is the problem, and who is hurt worst?</p><p class="meta">Trend · Road users · Severity · Age &amp; sex · Remoteness</p></a>
+      <a class="ds-card st" href="#state"><span class="ds-tag st">State &amp; Territory</span><p class="finding">Does the national story hold in every state?</p><p class="meta">Growth · Reporting breaks · Cyclists · Injury profiles · Bed days</p></a>
+      <a class="ds-card fn" href="#first-nations"><span class="ds-tag fn">First Nations</span><p class="finding">How do First Nations people's hospitalisations differ?</p><p class="meta">Trend · Age · Usual residence · Road user &amp; crash type</p></a>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ================================================================ THE NATIONAL PICTURE -->
+<section id="national" class="part">
+  <div class="wrap">
+    <header class="part-head">
+      <p class="part-num">Dataset 1 · National</p>
+      <h2>The national picture</h2>
+      <p class="part-q">How big is the problem, and who is hurt worst?</p>
+    </header>
+    <p class="prose">Australian hospitals now record close to forty thousand road-crash hospitalisations a year, up from about 34,000 in 2011. The series grew through the mid-2010s and then levelled off, and two states changed how they count emergency-department-only patients along the way. Behind the total, volume and severity point at different people: car occupants and riders fill the wards, while pedestrians and people aged 75 and over make up a far larger share of deaths in hospital than of admissions.</p>
+  </div>
+  <article class="chart-block wide" id="n1">
+    <div class="wrap">
+      <p class="kicker">N1 · National</p>
+      <h3 class="chart-headline">Hospitalisations rose about 16% over the decade, then flattened after 2017</h3>
+      <p class="chart-desc">National road-crash hospitalisations per half-year (or per year, with the toggle), 2011–2021. Dashed rules mark reporting changes. The lower panel shows deaths in hospital per 1,000 cases for the full years with death data (2011–2019), with period averages either side of the NSW change.</p>
+      <div class="controls" data-chart="n1" role="group" aria-label="Time resolution">
+        <button type="button" data-opt="mode" data-value="half">Half-yearly</button>
+        <button type="button" data-opt="mode" data-value="annual">Annual</button>
+      </div>
+    </div>
+    <div class="wrap-wide"><div class="chart" id="chart-n1" data-chart="n1"></div><p class="chart-source">Source: BITRE national hospitalised injuries file (Cause of injury = Traffic), AIHW National Hospital Morbidity Database, September 2023 release.</p></div>
+    <div class="wrap">
+      <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-n1"></div></details>
+      <div class="why">
+        <h4>Why it matters</h4>
+        <p>Hospitalisations went from <span data-stat="h2011"></span> in 2011 to a peak of <span data-stat="h2019"></span> in 2019 and <span data-stat="h2021"></span> in 2021 (<span data-stat="g1121"></span>). Almost all of the growth came before 2017: <span data-stat="g1216"></span> over 2012–2016, a window with no reporting change, against <span data-stat="g1821"></span> over 2018–2021. The only sharp fall is January–June 2020 (<span data-stat="covidH1"></span> on the same half of 2019), which coincides with COVID-19 restrictions. It was short-lived: July–December 2020 (<span data-stat="h2020H2"></span>) and January–June 2021 (<span data-stat="h2021H1"></span>) were the two highest half-years on record.</p>
+        <p>Deaths in hospital per 1,000 cases fell from <span data-stat="dr2011"></span> to <span data-stat="dr2019"></span> between 2011 and 2019, but not smoothly: 2016 had <span data-stat="d2016"></span> deaths, the most in the series, and the largest step, 2016 to 2017 (<span data-stat="dr2016"></span> to <span data-stat="dr2017"></span>), coincides with the NSW counting change. Read it as an indicative series, not a clean decline.</p>
+      </div>
+      <aside class="caveat" aria-label="Caveat">
+        <strong>Read with care.</strong> These are counts, not population rates. The Victorian (Jul 2012) and NSW (Jun 2017) changes both <em>reduce</em> recorded admissions; the data dictionary estimates the Victorian change lowered the 2012 national count by about 2.8%. Death fields end in June 2020, and July 2020 is treated as a soft break in the series.
+      </aside>
+    </div>
+  </article>
+
+  <article class="chart-block" id="n2">
+    <div class="wrap">
+      <p class="kicker">N2 · National · Road users</p>
+      <h3 class="chart-headline">Cyclist hospitalisations rose <span data-stat="cyc1121"></span> since 2011, faster than any other road user</h3>
+      <p class="chart-desc">Annual hospitalisations by road user, indexed so that 2011 = 100. Cyclists are highlighted; hover any line, or choose a road user below, to bring it forward.</p>
+      <div class="controls" data-chart="n2" role="group" aria-label="Measure">
+        <button type="button" data-opt="mode" data-value="index">Indexed (2011 = 100)</button>
+        <button type="button" data-opt="mode" data-value="count">Counts</button>
+      </div>
+      <div class="chart" id="chart-n2" data-chart="n2"></div><p class="chart-source">Source: BITRE national hospitalised injuries file (Cause of injury = Traffic), AIHW National Hospital Morbidity Database, September 2023 release.</p>
+      <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-n2"></div></details>
+      <div class="why">
+        <h4>Why it matters</h4>
+        <p>Pedal-cyclist hospitalisations rose from <span data-stat="cyc2011"></span> to <span data-stat="cyc2021"></span> (<span data-stat="cyc1121"></span>), and the rise holds inside the windows that avoid reporting changes: <span data-stat="cyc1216"></span> over 2012–2016 and <span data-stat="cyc1821"></span> over 2018–2021. In January–June 2020, cyclists were the only major group to rise (<span data-stat="cycCovid"></span> on the same half of 2019) while pedestrians fell <span data-stat="pedCovid"></span>.</p>
+        <p>The pedestrian fall over the decade (<span data-stat="ped1121"></span>) is mostly 2020–21: from 2011 to 2019 it was only <span data-stat="ped1119"></span>. Pedestrians are a severity story, not a volume story, as the next chart shows.</p>
+      </div>
+      <aside class="caveat"><strong>No exposure data.</strong> We do not know how many people ride or how far, so this does not show cycling becoming more dangerous. More people riding is an equally plausible explanation. "Other" = car occupants with unknown position, heavy-vehicle, bus and pick-up/van occupants, and other or unknown road users.</aside>
+    </div>
+  </article>
+
+  <article class="chart-block" id="n3">
+    <div class="wrap">
+      <p class="kicker">N3 · National · Severity</p>
+      <h3 class="chart-headline">Pedestrians are 1 in 14 cases but 1 in 4 deaths in hospital</h3>
+      <p class="chart-desc">For each group, the navy dot is its share of hospitalised cases and the crimson dot its share of deaths in hospital (within 30 days of admission), 2011–2019. The longer the line, the bigger the mismatch. Rows are sorted by the gap.</p>
+      <div class="callout-stat sev"><span class="big cases"><span data-stat="pedCases"></span></span> of cases <span class="dot" aria-hidden="true">·</span> <span class="big deaths"><span data-stat="pedDeaths"></span></span> of deaths in hospital <span class="who">Pedestrians, 2011–2019</span></div>
+      <div class="controls" data-chart="n3" role="group" aria-label="Grouping">
+        <button type="button" data-opt="mode" data-value="roadUser">Road user</button>
+        <button type="button" data-opt="mode" data-value="counterparty">What the crash involved</button>
+      </div>
+      <div class="chart" id="chart-n3" data-chart="n3"></div><p class="chart-source">Source: BITRE national hospitalised injuries file (Cause of injury = Traffic), AIHW National Hospital Morbidity Database, September 2023 release.</p>
+      <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-n3"></div></details>
+      <div class="why">
+        <h4>Why it matters</h4>
+        <p>Pedestrians record <span data-stat="pedRate"></span> deaths in hospital per 1,000 cases (<span data-stat="pedN"></span> deaths). Cyclists are the mirror image: <span data-stat="cycCases"></span> of cases but <span data-stat="cycDeaths"></span> of deaths. In the counterparty view, crashes with a heavy vehicle or bus are <span data-stat="hvCases"></span> of cases but <span data-stat="hvDeaths"></span> of deaths (<span data-stat="hvRate"></span> per 1,000). The pattern is consistent with being unprotected, and with the size of the other vehicle, mattering for severity.</p>
+      </div>
+      <aside class="caveat"><strong>Deaths means deaths in hospital within 30 days of admission</strong>, 2011–2019 only; deaths at the scene are not in this data. Groups with fewer than 30 deaths are greyed because their rates are unstable (the train category rests on 17 deaths). Bed days in the tooltip cover July 2015 – June 2020 only and are not length of stay. "Other" includes car occupants with unknown position (see Methods).</aside>
+    </div>
+  </article>
+
+  <article class="chart-block" id="n4">
+    <div class="wrap">
+      <p class="kicker">N4 · National · Age and sex</p>
+      <h3 class="chart-headline">Two in three hospitalisations are male; people aged 75+ are 6% of cases but 29% of deaths in hospital</h3>
+      <p class="chart-desc">Hospitalisations by age group, males to the left and females to the right (2011–2021). The dot strip on the right shows deaths in hospital per 1,000 cases for each age group (2011–2019).</p>
+      <div class="callout-stat sev"><span class="who">Age 75+</span> <span class="big cases"><span data-stat="a75Cases"></span></span> of cases <span class="dot" aria-hidden="true">·</span> <span class="big deaths"><span data-stat="a75Deaths"></span></span> of deaths in hospital</div>
+      <div class="chart" id="chart-n4" data-chart="n4"></div><p class="chart-source">Source: BITRE national hospitalised injuries file (Cause of injury = Traffic), AIHW National Hospital Morbidity Database, September 2023 release.</p>
+      <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-n4"></div></details>
+      <div class="why">
+        <h4>Why it matters</h4>
+        <p>Males are <span data-stat="male"></span> of hospitalisations. The gap is widest among children and teenagers aged 8–16 (<span data-stat="ratio816"></span> males per female) and disappears at 75+ (<span data-stat="ratio75"></span>). Severity climbs steeply with age: <span data-stat="a6574Rate"></span> deaths per 1,000 at 65–74 and <span data-stat="a75Rate"></span> at 75+, about six times the rate for ages 40–64 (<span data-stat="a4064Rate"></span>). Patients aged 75+ also use <span data-stat="a75Bd"></span> bed days per case (July 2015 – June 2020).</p>
+      </div>
+      <aside class="caveat"><strong>Counts reflect population size and travel.</strong> This data has no population denominator, so it cannot say whether any age group is more likely, per person, to be hospitalised. The severity rates are per 1,000 cases, not per person. 15 cases with sex recorded as intersex, indeterminate or missing, and 1 with missing age, are excluded.</aside>
+    </div>
+  </article>
+
+  <article class="chart-block" id="n5">
+    <div class="wrap">
+      <p class="kicker">N5 · National · Remoteness</p>
+      <h3 class="chart-headline">Cyclists are <span data-stat="cycCity"></span> of major-city patients but only <span data-stat="cycRemote"></span> of remote patients</h3>
+      <p class="chart-desc">Road-user mix of hospitalisations by the remoteness of the patient's <strong>usual residence</strong> (not where the crash happened), 2011–2021. Beside each bar: deaths in hospital per 1,000 cases and bed days per case.</p>
+      <div class="chart" id="chart-n5" data-chart="n5"></div><p class="chart-source">Source: BITRE national hospitalised injuries file (Cause of injury = Traffic), AIHW National Hospital Morbidity Database, September 2023 release.</p>
+      <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-n5"></div></details>
+      <div class="why">
+        <h4>Why it matters</h4>
+        <p>Patients who live in remote areas are more often car passengers (<span data-stat="paxRemote"></span> vs <span data-stat="paxCity"></span> in major cities) and far less often cyclists (<span data-stat="cycRemote"></span> vs <span data-stat="cycCity"></span>). Patients living in regional areas die in hospital more often (<span data-stat="regRate"></span> vs <span data-stat="cityRate"></span> per 1,000) and use more bed days per case (<span data-stat="regBd"></span> vs <span data-stat="cityBd"></span>); remote residents' rate (<span data-stat="remRate"></span>) matches major cities, so severity does not simply rise with remoteness. Patients with no recorded residence are a small group (<span data-stat="missCases"></span> of cases) with a high share of deaths (<span data-stat="missDeaths"></span>; <span data-stat="missRate"></span> per 1,000), so they stay in view.</p>
+      </div>
+      <aside class="caveat"><strong>Residence, not crash site.</strong> There is no population denominator in our files, so these are mixes and within-group rates, not rates per person. "Other" includes car occupants with unknown position (see Methods).</aside>
+    </div>
+  </article>
+
+
+  <p class="transition"><span>If where you live changes the picture, what happens state by state?</span></p>
+</section>
+
+<!-- ================================================================ BEYOND THE NATIONAL AVERAGE -->
+<section id="state" class="part">
+  <div class="wrap">
+    <header class="part-head">
+      <p class="part-num">Dataset 2 · State &amp; Territory</p>
+      <h2>Beyond the national average</h2>
+      <p class="part-q">Does the national story hold everywhere?</p>
+    </header>
+    <p class="prose">No. Jurisdictions grow at very different rates and have distinct injury profiles, and two of the largest movements (NSW and Victoria) are partly reporting changes. Choose a state to follow it through every chart in this section.</p>
+  </div>
+  <div class="state-bar" role="region" aria-label="State selector">
+    <div class="wrap">
+      <p class="banner"><span aria-hidden="true">⚠</span> <strong>Counts, not rates.</strong> <span class="banner-full">State = patient's state of usual residence. NSW (from Jun 2017) and Victoria (from Jul 2012) changed how emergency-department-only cases are counted.</span><span class="banner-short">By usual residence; NSW and Vic counting changes.</span></p>
+      <div class="state-picker">
+        <span class="sort-label" id="state-label">Highlight a state:</span>
+        <div id="state-buttons" class="chips" role="group" aria-labelledby="state-label"></div>
+        <button type="button" id="state-clear" class="chip chip-clear" hidden>Clear</button>
+        <span id="state-status" class="sr-only" aria-live="polite">No state selected</span>
+      </div>
+    </div>
+  </div>
+
+
+  <article class="chart-block wide" id="s1">
+    <div class="wrap">
+      <p class="kicker">S1 · State · Growth</p>
+      <h3 class="chart-headline">Queensland grew fastest since 2018 (<span data-stat="qld1821"></span>), and grew in every comparable window</h3>
+      <p class="chart-desc">Percentage change in annual hospitalisations by state of usual residence. Tiles sit in roughly geographic positions. Choose a comparison window; 2018–2021 is the default because no state changed its counting rules during this window. Hover a tile or bar for counts; click to highlight a state.</p>
+      <div class="controls" data-chart="s1" role="group" aria-label="Comparison window">
+        <button type="button" data-opt="window" data-value="2018-2021">2018–2021</button>
+        <button type="button" data-opt="window" data-value="2012-2016">2012–2016</button>
+        <button type="button" data-opt="window" data-value="2011-2021">2011–2021</button>
+      </div>
+    </div>
+    <div class="wrap-wide"><div class="chart" id="chart-s1" data-chart="s1"></div><p class="chart-source">Source: BITRE State &amp; Territory hospitalised injuries workbook (Tables 1–5, six-monthly), September 2023 release.</p></div>
+    <div class="wrap">
+      <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-s1"></div></details>
+      <div class="why">
+        <h4>Why it matters</h4>
+        <p>Queensland grew <span data-stat="qld1821"></span> over 2018–2021, <span data-stat="qld1216"></span> over 2012–2016 and <span data-stat="qld1121"></span> over the decade. Since 2018 the spread among the larger states runs from Queensland down to NSW (<span data-stat="nsw1821"></span>). The NT's <span data-stat="nt1821"></span> reflects an unusually high 2018 (<span data-stat="nt2018"></span> hospitalisations), so read it with care. Over 2011–2021, NSW (<span data-stat="nsw1121"></span>) and Victoria (<span data-stat="vic1121"></span>) cross their reporting changes: from 2013, after its change, Victoria grew <span data-stat="vic1321"></span>.</p>
+      </div>
+      <aside class="caveat"><strong>Change in counts, not rates.</strong> Population growth differs by state and is not adjusted for. Small bases (NT 456 and Tas 493 in 2011) make percentages jumpy.</aside>
+    </div>
+  </article>
+
+  <article class="chart-block wide" id="s2">
+    <div class="wrap">
+      <p class="kicker">S2 · State · Half-yearly</p>
+      <h3 class="chart-headline">Victoria fell <span data-stat="vicDrop12"></span> in one half-year when it changed its counting rules in 2012</h3>
+      <p class="chart-desc">Hospitalisations per half-year for each state of usual residence, 2011–2021. Hatched areas are affected by a reporting change. Hover a panel to line up the same half-year across all eight.</p>
+      <div class="controls" data-chart="s2" role="group" aria-label="Y-scale">
+        <button type="button" data-opt="scale" data-value="own">Own scale</button>
+        <button type="button" data-opt="scale" data-value="shared">Shared scale</button>
+      </div>
+    </div>
+    <div class="wrap-wide"><div class="chart" id="chart-s2" data-chart="s2"></div><p class="chart-source">Source: BITRE State &amp; Territory hospitalised injuries workbook (Tables 1–5, six-monthly), September 2023 release.</p></div>
+    <div class="wrap">
+      <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-s2"></div></details>
+      <div class="why">
+        <h4>Why it matters</h4>
+        <p>NSW steps down in the first half of 2018 after its June 2017 change to emergency-department admission policy, so much of its "decline" is a counting change. Victoria drops sharply in the second half of 2012 after excluding ED-only cases, then climbs to its highest annual total in 2018 (<span data-stat="vic2018"></span>) and stays high, apart from the early-2020 dip. The small territories swing from one half-year to the next, so no single period should be over-read.</p>
+      </div>
+      <aside class="caveat"><strong>Check the scale.</strong> With own scales, panel heights are not comparable between states. The early-2020 dip appears in several states; it coincides with COVID-19 restrictions, which are external context, not a finding of this data.</aside>
+    </div>
+  </article>
+
+  <article class="chart-block" id="s3">
+    <div class="wrap">
+      <p class="kicker">S3 · State · Cyclists</p>
+      <h3 class="chart-headline">Cyclist hospitalisations rose in every state and territory, from <span data-stat="waCyc"></span> in WA to <span data-stat="actCyc"></span> in the ACT</h3>
+      <p class="chart-desc">Change in pedal-cyclist hospitalisations from 2011 to 2021 by state of usual residence. Hover a bar for counts; the state chosen above is highlighted.</p>
+      <div class="chart" id="chart-s3" data-chart="s3"></div><p class="chart-source">Source: BITRE State &amp; Territory hospitalised injuries workbook (Tables 1–5, six-monthly), September 2023 release.</p>
+      <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-s3"></div></details>
+      <div class="why">
+        <h4>Why it matters</h4>
+        <p>The national cyclist increase appears in every jurisdiction, not just one or two.</p>
+      </div>
+      <aside class="caveat"><strong>⚠ NSW and Victoria</strong> cross reporting changes that may affect road users unevenly, so their mix can shift for counting reasons. Tasmania (73) and the NT (62) start from small 2011 bases.</aside>
+    </div>
+  </article>
+
+  <article class="chart-block wide" id="s4">
+    <div class="wrap">
+      <p class="kicker">S4 · State · Injury profile</p>
+      <h3 class="chart-headline">Every jurisdiction has its own injury profile: cyclists are <span data-stat="actCycShare"></span> of ACT cases, against <span data-stat="cycShareMin"></span>–<span data-stat="cycShareMax"></span> elsewhere</h3>
+      <p class="chart-desc">Each cell is a category's share of the state's total hospitalisations, 2011–2021 pooled. Cases withheld for small numbers (n.p.) stay visible in their own column instead of being counted as zero.</p>
+      <div class="controls" data-chart="s4" role="group" aria-label="Category scheme">
+        <button type="button" data-opt="mode" data-value="roadUser">Road user</button>
+        <button type="button" data-opt="mode" data-value="counterparty">Counterparty</button>
+        <button type="button" data-opt="mode" data-value="age">Age</button>
+      </div>
+    </div>
+    <div class="wrap-wide"><div class="chart" id="chart-s4" data-chart="s4"></div><p class="chart-source">Source: BITRE State &amp; Territory hospitalised injuries workbook (Tables 1–5, six-monthly), September 2023 release.</p></div>
+    <div class="wrap">
+      <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-s4"></div></details>
+      <div class="why">
+        <h4>Why it matters</h4>
+        <p>In the ACT, pedal cyclists are <span data-stat="actCycShare"></span> of cases; elsewhere they are <span data-stat="cycShareMin"></span>–<span data-stat="cycShareMax"></span>. In the NT, <span data-stat="ntNonColl"></span> of cases are non-collision transport accidents. Queensland (<span data-stat="qldMoto"></span>), WA (<span data-stat="waMoto"></span>) and Tasmania (<span data-stat="tasMoto"></span>) have high motorcyclist shares. These profiles differ enough that one national picture fits no state exactly.</p>
+      </div>
+      <aside class="caveat"><strong>State categories only.</strong> The state tables merge car driver, passenger and unknown position, and use four counterparty groups instead of the national ten, so these shares are not comparable with Part 2. Unpublished cases are at most <span data-stat="npMaxRU"></span> of a state's total in the road-user table.</aside>
+    </div>
+  </article>
+
+  <article class="chart-block" id="s5">
+    <div class="wrap">
+      <p class="kicker">S5 · State · Hospital resources</p>
+      <h3 class="chart-headline">Patients from the ACT and Queensland use about 4 bed days per hospitalisation; most other states are closer to 6</h3>
+      <p class="chart-desc">Bed days per hospitalisation by state of usual residence, July 2015 – December 2021, the period after the bed-day rule change. The dashed line is the national figure for July 2015 – June 2020 (deaths removed; national death fields end in June 2020); hollow rings show each state over that same window. Hover a row for counts; the state chosen above is highlighted.</p>
+      <div class="chart" id="chart-s5" data-chart="s5"></div><p class="chart-source">Source: BITRE State &amp; Territory hospitalised injuries workbook (Tables 1–5, six-monthly), September 2023 release.</p>
+      <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-s5"></div></details>
+      <div class="why">
+        <h4>Why it matters</h4>
+        <p>Over the same July 2015 – June 2020 window, ACT (<span data-stat="actBd20"></span>) and Queensland (<span data-stat="qldBd20"></span>) patients sit well below NSW (<span data-stat="nswBd20"></span>) and the national figure (<span data-stat="natBd"></span>). The same number of hospitalisations of a state's residents means a different load on beds depending on the state.</p>
+      </div>
+      <aside class="caveat"><strong>Comparable period only.</strong> Bed-day rules changed on 1 July 2015 (the 2015–16 financial year), so earlier years are left out. State bed days already exclude deaths in hospital. National died bed days are unavailable after June 2020, so the national line uses July 2015 – June 2020; the hollow rings show each state over that same window. This is bed days per hospitalisation, not length of stay.</aside>
+    </div>
+  </article>
+
+
+  <p class="transition"><span>And within the national total, one population's story stands apart.</span></p>
+</section>
+
+<!-- ================================================================ FIRST NATIONS AND NON-INDIGENOUS PEOPLE -->
+<section id="first-nations" class="part">
+  <div class="wrap">
+    <header class="part-head">
+      <p class="part-num">Dataset 3 · First Nations</p>
+      <h2>First Nations and non-Indigenous people</h2>
+      <p class="part-q">How do First Nations people's road-crash hospitalisations differ?</p>
+    </header>
+    <p class="prose">First Nations people's road-crash hospitalisations rose much faster than non-Indigenous people's between 2011 and 2021, and they look different: younger, more often from remote areas, and more often involving motorcycles and non-collision crashes. These charts describe counts and the <em>mix</em> of hospitalisations, not injury risk; differences also reflect population size and age structure, where people live, and how First Nations status is recorded.</p>
+  </div>
+  <article class="chart-block wide" id="f1">
+    <div class="wrap">
+      <p class="kicker">F1 · First Nations · Trend</p>
+      <h3 class="chart-headline">First Nations hospitalisations nearly doubled (<span data-stat="fnChg"></span>), while non-Indigenous hospitalisations rose <span data-stat="niChg"></span></h3>
+      <p class="chart-desc">Annual road-crash hospitalisations for each group, indexed so that 2011 = 100. Switch to see First Nations people's share of the two groups combined. Dashed rules mark the reporting changes, which affect both groups. Hover for counts.</p>
+      <div class="controls" data-chart="f1" role="group" aria-label="Measure">
+        <button type="button" data-opt="mode" data-value="index">Indexed (2011 = 100)</button>
+        <button type="button" data-opt="mode" data-value="share">First Nations share</button>
+      </div>
+    </div>
+    <div class="wrap-wide"><div class="chart" id="chart-f1" data-chart="f1"></div><p class="chart-source">Source: BITRE First Nations hospitalised injuries workbook, September 2023 release.</p></div>
+    <div class="wrap">
+      <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-f1"></div></details>
+      <div class="why">
+        <h4>Why it matters</h4>
+        <p>First Nations hospitalisations went from <span data-stat="fn2011"></span> in 2011 to <span data-stat="fn2021"></span> in 2021, peaking at <span data-stat="fnPeak"></span> in <span data-stat="fnPeakYear"></span>; non-Indigenous hospitalisations went from <span data-stat="ni2011"></span> to <span data-stat="ni2021"></span>. First Nations people's share of the two groups combined rose from <span data-stat="fnShare2011"></span> to <span data-stat="fnShare2021"></span>.</p>
+        <p>The rise began between 2011 and 2012, before Victoria's July 2012 reporting change (which lowered counts), so it is not explained by that change. The data does not show its cause.</p>
+      </div>
+      <aside class="caveat"><strong>Counts, not rates.</strong> Without population or travel data, this cannot say whether First Nations people's risk of injury changed; population growth and how First Nations status is recorded can also move these counts. The 2020 peak coincides with COVID-19 restrictions, which are outside context, not a finding of this data.</aside>
+    </div>
+  </article>
+
+  <article class="chart-block" id="f2">
+    <div class="wrap">
+      <p class="kicker">F2 · First Nations · Age</p>
+      <h3 class="chart-headline">Almost half of First Nations hospitalisations are people under 26 (<span data-stat="fnU26"></span>, against <span data-stat="niU26"></span> for non-Indigenous people)</h3>
+      <p class="chart-desc">Share of each group's hospitalisations by age group at admission, in 2011 and 2021. Hover a segment to compare it with the other year and the other group.</p>
+      <div class="chart" id="chart-f2" data-chart="f2"></div><p class="chart-source">Source: BITRE First Nations hospitalised injuries workbook, September 2023 release.</p>
+      <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-f2"></div></details>
+      <div class="why">
+        <h4>Why it matters</h4>
+        <p>In 2021 the largest First Nations age group was 17–25 (<span data-stat="fn1725"></span> hospitalisations). People aged 65 and over were only <span data-stat="fn65"></span> of First Nations hospitalisations, against <span data-stat="ni65"></span> for non-Indigenous people. Young children (0–7) fell from <span data-stat="fnAge07_2011"></span> to <span data-stat="fnAge07_2021"></span> of First Nations cases.</p>
+        <p>Prevention aimed at young drivers, riders and passengers reaches a larger share of First Nations patients than of non-Indigenous patients.</p>
+      </div>
+      <aside class="caveat"><strong>A mix, not a risk.</strong> The age profile partly reflects differences in the age structure of the two populations, which this data does not measure. Ages are grouped as in the workbook (65+ is one group here).</aside>
+    </div>
+  </article>
+
+  <article class="chart-block" id="f3">
+    <div class="wrap">
+      <p class="kicker">F3 · First Nations · Usual residence</p>
+      <h3 class="chart-headline"><span data-stat="fnRemote"></span> of First Nations patients with a known residence live in remote areas, against <span data-stat="niRemote"></span> of non-Indigenous patients</h3>
+      <p class="chart-desc">Share of each group's hospitalisations by remoteness of the patient's <strong>usual residence</strong> (not where the crash happened), 2011 and 2021, for cases with a known residence.</p>
+      <div class="chart" id="chart-f3" data-chart="f3"></div><p class="chart-source">Source: BITRE First Nations hospitalised injuries workbook, September 2023 release.</p>
+      <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-f3"></div></details>
+      <div class="why">
+        <h4>Why it matters</h4>
+        <p>Only <span data-stat="fnCity"></span> of First Nations patients live in major cities, against <span data-stat="niCity"></span> of non-Indigenous patients. The remote share fell between 2011 and 2021 as major-city and regional cases grew faster, but remote residents remain a far larger part of First Nations road trauma.</p>
+        <p>Where patients live matters for planning trauma services and rehabilitation as well as for prevention.</p>
+      </div>
+      <aside class="caveat"><strong>Residence, not crash site.</strong> Cases with unknown residence are excluded from these shares (<span data-stat="fnUnknownRes"></span> First Nations cases in 2021). The national dataset uses four remoteness groups; this workbook uses three, so the two are not directly comparable.</aside>
+    </div>
+  </article>
+
+  <article class="chart-block" id="f4">
+    <div class="wrap">
+      <p class="kicker">F4 · First Nations · Road user and crash type</p>
+      <h3 class="chart-headline">Motorcyclists rose from <span data-stat="fnMotoShare2011"></span> to <span data-stat="fnMotoShare2021"></span> of First Nations hospitalisations; the non-Indigenous share stayed at <span data-stat="niMotoShare2021"></span></h3>
+      <p class="chart-desc">How each group's share of hospitalisations by road user, or by what the crash involved, moved between 2011 and 2021. A steeper line is a bigger shift; both panels share one scale. Hover a line to compare.</p>
+      <div class="controls" data-chart="f4" role="group" aria-label="Category">
+        <button type="button" data-opt="mode" data-value="roadUser">Road user</button>
+        <button type="button" data-opt="mode" data-value="counterparty">What the crash involved</button>
+      </div>
+      <div class="chart" id="chart-f4" data-chart="f4"></div><p class="chart-source">Source: BITRE First Nations hospitalised injuries workbook, September 2023 release.</p>
+      <details class="table-toggle"><summary>View data table</summary><div class="table-wrap" id="table-f4"></div></details>
+      <div class="why">
+        <h4>Why it matters</h4>
+        <p>First Nations motorcyclist hospitalisations rose <span data-stat="fnMoto1121"></span> over the decade, with a jump from <span data-stat="fnMoto2019"></span> in 2019 to <span data-stat="fnMoto2020"></span> in 2020 while non-Indigenous motorcyclist hospitalisations fell (<span data-stat="niMoto2019"></span> to <span data-stat="niMoto2020"></span>). First Nations patients are also more often pedestrians (<span data-stat="fnPed"></span> vs <span data-stat="niPed"></span> in 2021) and less often cyclists (<span data-stat="fnCyc"></span> vs <span data-stat="niCyc"></span>).</p>
+        <p>In the crash-type view, non-collision transport accidents (for example running off the road or overturning) are <span data-stat="fnNonColl"></span> of First Nations hospitalisations, against <span data-stat="niNonColl"></span> for non-Indigenous people.</p>
+      </div>
+      <aside class="caveat"><strong>Separate breakdowns.</strong> Road user and crash type are published as separate tables, so they cannot show how many non-collision cases were motorcyclists. "Car occupant" merges driver, passenger and unknown position. "Other" road users includes cells not published for small numbers.</aside>
+    </div>
+  </article>
+
+
+  <p class="transition"><span>So what does all this tell us?</span></p>
+</section>
+
+<!-- ================================================================ TAKEAWAYS -->
+<section id="takeaways" class="part">
+  <div class="wrap">
+    <header class="part-head">
+      <p class="part-num">Takeaways</p>
+      <h2>What the data tells us</h2>
+    </header>
+    <ol class="takeaways">
+      <li><span class="tk-num" data-stat="g1121"></span><p><strong>Hospitalisations rose, then flattened.</strong> Up from 2011 to 2021, almost all of it before 2017; 2018–2021 was flat (<span data-stat="g1821"></span>).</p></li>
+      <li class="cyc"><span class="tk-num" data-stat="cyc1121"></span><p><strong>Cyclists are the fastest-growing group</strong>, and rose in every state and territory.</p></li>
+      <li class="sev"><span class="tk-num">7% → 26%</span><p><strong>Pedestrians</strong> are 7% of cases but 26% of deaths in hospital; people aged 75+ are 6% of cases but 29% (2011–2019).</p></li>
+      <li><span class="tk-num"><span data-stat="qld1821"></span> to <span data-stat="nsw1821"></span></span><p><strong>State trends differ widely.</strong> Since 2018, a window with no counting-rule changes, growth runs from Queensland to NSW. NSW's and Victoria's decade figures partly reflect reporting changes.</p></li>
+      <li class="fn"><span class="tk-num" data-stat="fnChg"></span><p><strong>First Nations hospitalisations nearly doubled</strong>, against <span data-stat="niChg"></span> for non-Indigenous people; First Nations patients are younger and far more often live in remote areas.</p></li>
+    </ol>
+
+    <aside class="cant-tell">
+      <h3>What this data can't tell us</h3>
+      <ul>
+        <li><strong>No population or exposure rates.</strong> Our files have no population, licence or distance-travelled denominators, so nothing here says one group or state is "riskier" per person.</li>
+        <li><strong>Deaths are only those in hospital,</strong> within 30 days of admission, from the national dataset, and only to June 2020. Deaths at the crash scene are outside this data.</li>
+        <li><strong>The datasets don't add up to each other.</strong> The eight states fall <span data-stat="gapMin"></span>–<span data-stat="gapMax"></span> short of the national total each year, and the First Nations workbook excludes cases with unstated status.</li>
+        <li><strong>Category schemes differ between workbooks,</strong> so road-user, counterparty, age and remoteness groups cannot be compared directly across datasets.</li>
+        <li><strong>Causes.</strong> COVID-19 restrictions, infrastructure or policy are context only; the data shows when things changed, not why.</li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<!-- ================================================================ METHODS -->
+<section id="methods" class="part methods">
+  <div class="wrap">
+    <header class="part-head">
+      <p class="part-num">Methods</p>
+      <h2>Data and methods</h2>
+    </header>
+    <p>BITRE, <em>Hospitalised injuries from road crashes</em> (AIHW National Hospital Morbidity Database, September 2023 release): the national monthly file (Cause of injury = Traffic), the State &amp; Territory workbook (Tables 1–5, six-monthly) and the First Nations workbook (six-monthly). All three were cleaned in KNIME; unpublished (n.p.) values are kept as missing, never zero. The figures on this page are generated from the processed CSVs by <code>Website/scripts/build_data.py</code>.</p>
+    <h3>Measures</h3>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th scope="col">Measure</th><th scope="col">Definition</th></tr></thead>
+        <tbody>
+          <tr><td>Hospitalisations</td><td>National <code>Hospitalisations</code> (= Count of cases − Died_cases) and the state "count of cases excluding died in hospitals within 30 days". Episodes of care, not people.</td></tr>
+          <tr><td>Deaths in hospital per 1,000 cases</td><td>Σ Died_cases ÷ Σ Count of cases × 1,000, full calendar years 2011–2019. Died in care = separation mode 8 within 30 days of admission. Groups with fewer than 30 deaths are greyed.</td></tr>
+          <tr><td>Share of cases / deaths</td><td>A group's Σ Count of cases or Σ Died_cases as a share of the national total, 2011–2019.</td></tr>
+          <tr><td>Bed days per case (national)</td><td>(Σ Bed days − Σ Died_bed_days) ÷ Σ Hospitalisations, July 2015 – June 2020 only (one bed-day rule regime, deaths still separable).</td></tr>
+          <tr><td>Bed days per hospitalisation (state)</td><td>Σ Table 1 bed days ÷ Σ Table 1 cases (both exclude deaths), July 2015 – December 2021.</td></tr>
+          <tr><td>State shares</td><td>Category count ÷ the state's Table 1 total; the remainder withheld as n.p. is shown as "Not published", never as zero.</td></tr>
+          <tr><td>Index</td><td>Count in year ÷ count in 2011 × 100.</td></tr>
+          <tr><td>National "Other" road user</td><td>Car occupant with unknown position, heavy-vehicle occupants, bus occupants, pick-up/van occupants and other or unknown road users. Car driver and passenger shares are therefore slightly understated.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Series breaks and soft breaks</h3>
+    <ul class="breaks">
+      <li><strong>Jul 2012, Victoria:</strong> emergency-department-only cases excluded from 1 July 2012 (dictionary estimate: −2.8% on the 2012 national count).</li>
+      <li><strong>Jun 2017, NSW:</strong> ED-only episodes no longer counted as admissions; injury categories are disproportionately affected.</li>
+      <li><strong>1 Jul 2015, bed days:</strong> inclusion rules changed for transfers and Z50 rehabilitation (2015–16 financial year). Bed days are never compared across this date.</li>
+      <li><strong>Jul 2020, national:</strong> Died_cases and Died_bed_days end; Count of cases is incomplete. Hospitalisations are used for every time series, and July 2020 is a soft break.</li>
+      <li><strong>ICD-10-AM:</strong> the classification edition changes every two years, so minor coding drift is possible.</li>
+    </ul>
+
+    <h3>National vs sum of states</h3>
+    <p>The states are never stacked to make the national total. The national figure is higher every year; the workbook notes that national totals include patients whose residence was unrecorded or migratory/offshore, which is the most likely explanation, though not an exact match.</p>
+    <div class="table-wrap" id="recon-table"></div>
+
+  </div>
+</section>
+</main>
+<a class="to-top" href="#top" aria-label="Back to top" hidden><span aria-hidden="true">↑</span><span class="to-top-label" aria-hidden="true">Back to top</span></a>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Data: BITRE, <em>Hospitalised injuries from road crashes</em> (AIHW National Hospital Morbidity Database), September 2023 release. Charts built with D3.js v7.</p>
+    <p>COS30045 Data Visualisation · Team Loong: Pham Tien Dat, Tran Trung Tin · Semester Fall 2026.</p>
+  </div>
+</footer>
+
+<script src="assets/js/d3.v7.min.js"></script>
+<script src="assets/data/story-data.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/charts/n1-trend.js"></script>
+<script src="assets/js/charts/n2-roadusers.js"></script>
+<script src="assets/js/charts/n3-severity.js"></script>
+<script src="assets/js/charts/n4-agesex.js"></script>
+<script src="assets/js/charts/n5-remoteness.js"></script>
+<script src="assets/js/charts/s1-growth.js"></script>
+<script src="assets/js/charts/s2-smallmultiples.js"></script>
+<script src="assets/js/charts/s3-cyclists.js"></script>
+<script src="assets/js/charts/s4-heatmap.js"></script>
+<script src="assets/js/charts/s5-beddays.js"></script>
+<script src="assets/js/charts/f1-trend.js"></script>
+<script src="assets/js/charts/f-mix.js"></script>
+<script src="assets/js/charts/f4-slope.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
