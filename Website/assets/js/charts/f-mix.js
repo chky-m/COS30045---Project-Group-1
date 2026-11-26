@@ -4,7 +4,7 @@
  *           rows {population, year, category, hospitalisations, share}
  * Chart:    100% stacked bars, one per population x year (2011 and 2021: the years with no
  *           n.p. cells in the age table). One renderer, two chart ids:
- *             f2 age · f3 usual residence (known residence only). F4 is a slopegraph: f4-slope.js
+ *             f2 age · f3 usual residence (known residence only). F4 is a 100% stacked bar chart: f4-stack.js
  */
 (function () {
   const { fmt } = U;
