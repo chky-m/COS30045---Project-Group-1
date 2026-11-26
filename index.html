@@ -146,7 +146,7 @@
     <div class="wrap">
       <p class="kicker">N3 · National · Severity</p>
       <h3 class="chart-headline">Pedestrians are 1 in 14 cases but 1 in 4 deaths in hospital</h3>
-      <p class="chart-desc">For each group, the navy dot is its share of hospitalised cases and the crimson dot its share of deaths in hospital (within 30 days of admission), 2011–2019. The longer the line, the bigger the mismatch. Rows are sorted by the gap.</p>
+      <p class="chart-desc">For each group, the open navy ring is its share of hospitalised cases and the filled crimson dot its share of deaths in hospital (within 30 days of admission), 2011–2019. The arrow points from cases to deaths: the longer it is, the bigger the mismatch. Groups with more of the deaths than of the cases come first, then those with fewer; each part is sorted by the size of the gap.</p>
       <div class="callout-stat sev"><span class="big cases"><span data-stat="pedCases"></span></span> of cases <span class="dot" aria-hidden="true">·</span> <span class="big deaths"><span data-stat="pedDeaths"></span></span> of deaths in hospital <span class="who">Pedestrians, 2011–2019</span></div>
       <div class="controls" data-chart="n3" role="group" aria-label="Grouping">
         <button type="button" data-opt="mode" data-value="roadUser">Road user</button>
@@ -387,7 +387,7 @@
     <div class="wrap">
       <p class="kicker">F4 · First Nations · Road user and crash type</p>
       <h3 class="chart-headline">Motorcyclists rose from <span data-stat="fnMotoShare2011"></span> to <span data-stat="fnMotoShare2021"></span> of First Nations hospitalisations; the non-Indigenous share stayed at <span data-stat="niMotoShare2021"></span></h3>
-      <p class="chart-desc">How each group's share of hospitalisations by road user, or by what the crash involved, moved between 2011 and 2021. A steeper line is a bigger shift; both panels share one scale. Hover a line to compare.</p>
+      <p class="chart-desc">Each bar splits one population's hospitalisations by road user, or by what the crash involved, in 2011 and in 2021. The outlined slice starts at 0% so its 2011 and 2021 widths compare directly; the shaded bands show how each slice grew or shrank. Hover a slice to compare.</p>
       <div class="controls" data-chart="f4" role="group" aria-label="Category">
         <button type="button" data-opt="mode" data-value="roadUser">Road user</button>
         <button type="button" data-opt="mode" data-value="counterparty">What the crash involved</button>
@@ -500,7 +500,7 @@
 <script src="assets/js/charts/s5-beddays.js"></script>
 <script src="assets/js/charts/f1-trend.js"></script>
 <script src="assets/js/charts/f-mix.js"></script>
-<script src="assets/js/charts/f4-slope.js"></script>
+<script src="assets/js/charts/f4-stack.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>
